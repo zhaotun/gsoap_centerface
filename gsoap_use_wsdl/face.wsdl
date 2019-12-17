@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="face"
+  targetNamespace="http://tempuri.org/ns.xsd/face.wsdl"
+  xmlns:tns="http://tempuri.org/ns.xsd/face.wsdl"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns="http://tempuri.org/ns.xsd"
+  xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:HTTP="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+  xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+  <schema targetNamespace="http://tempuri.org/ns.xsd"
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns="http://tempuri.org/ns.xsd"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="unqualified"
+    attributeFormDefault="unqualified">
+    <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    <complexType name="SingleFaceInfo"><!-- ns__SingleFaceInfo -->
+          <sequence>
+            <element name="x1" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::x1 -->
+            <element name="y1" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::y1 -->
+            <element name="x2" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::x2 -->
+            <element name="y2" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::y2 -->
+            <element name="score" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::score -->
+            <element name="landmarks" type="ns:Array10Offloat" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::landmarks -->
+          </sequence>
+    </complexType>
+    <complexType name="FaceRes"><!-- FaceRes -->
+          <sequence>
+            <element name="item" type="ns:SingleFaceInfo" minOccurs="0" maxOccurs="unbounded"/><!-- FaceRes::__size -->
+          </sequence>
+    </complexType>
+    <complexType name="Array10Offloat">
+      <complexContent>
+        <restriction base="SOAP-ENC:Array">
+          <sequence>
+            <element name="item" type="xsd:float" minOccurs="0" maxOccurs="10"/>
+          </sequence>
+        </restriction>
+      </complexContent>
+    </complexType>
+  </schema>
+
+</types>
+
+<message name="FaceDetectByImgpathRequest">
+  <part name="img-path" type="xsd:string"/><!-- ns__FaceDetectByImgpath::img_path -->
+</message>
+
+<message name="FaceDetectByImgpathResponse">
+  <part name="face-res" type="ns:FaceRes"/><!-- ns__FaceDetectByImgpath::face_res -->
+</message>
+
+<message name="FaceDetectByBase64Request">
+  <part name="img-base64" type="xsd:string"/><!-- ns__FaceDetectByBase64::img_base64 -->
+</message>
+
+<message name="FaceDetectByBase64Response">
+  <part name="face-res" type="ns:FaceRes"/><!-- ns__FaceDetectByBase64::face_res -->
+</message>
+
+<portType name="facePortType">
+  <operation name="FaceDetectByImgpath">
+    <documentation>Service definition of function ns__FaceDetectByImgpath</documentation>
+    <input message="tns:FaceDetectByImgpathRequest"/>
+    <output message="tns:FaceDetectByImgpathResponse"/>
+  </operation>
+  <operation name="FaceDetectByBase64">
+    <documentation>Service definition of function ns__FaceDetectByBase64</documentation>
+    <input message="tns:FaceDetectByBase64Request"/>
+    <output message="tns:FaceDetectByBase64Response"/>
+  </operation>
+</portType>
+
+<binding name="face" type="tns:facePortType">
+  <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="FaceDetectByImgpath">
+    <SOAP:operation style="rpc" soapAction=""/>
+    <input>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/ns.xsd"/>
+    </input>
+    <output>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/ns.xsd"/>
+    </output>
+  </operation>
+  <operation name="FaceDetectByBase64">
+    <SOAP:operation style="rpc" soapAction=""/>
+    <input>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/ns.xsd"/>
+    </input>
+    <output>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/ns.xsd"/>
+    </output>
+  </operation>
+</binding>
+
+<service name="face">
+  <documentation>gSOAP 2.8.96 generated service definition</documentation>
+  <port name="face" binding="tns:face">
+    <SOAP:address location="http://localhost:80"/>
+  </port>
+</service>
+
+</definitions>

@@ -1,0 +1,9 @@
+OS :win10
+CPU:i5-8300H cpu@2.30GHz
+RAM:16.0 GB
+use OPENCV_4.1.2 DNN moudle to load the centerface onnx model
+
+image   image_size   detect_path   detect_base64
+21.jpg    640*427       0.181s        0.171s
+19.jpg    792*550       0.243s        0.228s
+1.jpg     844*598       0.259         0.265s

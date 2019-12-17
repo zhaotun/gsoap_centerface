@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <schema targetNamespace="http://tempuri.org/ns.xsd"
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns="http://tempuri.org/ns.xsd"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="unqualified"
+    attributeFormDefault="unqualified">
+    <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    <complexType name="SingleFaceInfo"><!-- ns__SingleFaceInfo -->
+          <sequence>
+            <element name="x1" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::x1 -->
+            <element name="y1" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::y1 -->
+            <element name="x2" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::x2 -->
+            <element name="y2" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::y2 -->
+            <element name="score" type="xsd:float" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::score -->
+            <element name="landmarks" type="ns:Array10Offloat" minOccurs="1" maxOccurs="1"/><!-- ns__SingleFaceInfo::landmarks -->
+          </sequence>
+    </complexType>
+    <complexType name="FaceRes"><!-- FaceRes -->
+          <sequence>
+            <element name="item" type="ns:SingleFaceInfo" minOccurs="0" maxOccurs="unbounded"/><!-- FaceRes::__size -->
+          </sequence>
+    </complexType>
+    <complexType name="Array10Offloat">
+      <complexContent>
+        <restriction base="SOAP-ENC:Array">
+          <sequence>
+            <element name="item" type="xsd:float" minOccurs="0" maxOccurs="10"/>
+          </sequence>
+        </restriction>
+      </complexContent>
+    </complexType>
+  </schema>
+
